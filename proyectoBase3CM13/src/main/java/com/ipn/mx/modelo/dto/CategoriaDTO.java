@@ -31,8 +31,8 @@ public class CategoriaDTO implements Serializable{//transfer object
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("clave: ").append(getEntidadad().getIdCategoria()).append("\n");
-        sb.append("clave: ").append(getEntidadad().getNombreCategoria()).append("\n");
-        sb.append("clave: ").append(getEntidadad().getDescripcionCategoria()).append("\n");
+        sb.append("nombre: ").append(getEntidadad().getNombreCategoria()).append("\n");
+        sb.append("descripcion: ").append(getEntidadad().getDescripcionCategoria()).append("\n");
         return sb.toString();
     }
     
