@@ -108,7 +108,7 @@ public class CategoriaDAO {//data access object, encapsular la logica de datos
         try{
             ps = conexion.prepareStatement(SQL_READ);
             ps.setInt(1, dto.getEntidadad().getIdCategoria());
-            ps.executeQuery();
+            rs = ps.executeQuery();
             List resultados = obtenerResultados(rs);
             if(resultados.size() > 0){
                 return (CategoriaDTO)resultados.get(0);
