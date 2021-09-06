@@ -42,6 +42,10 @@ public class ActualizarCategoria extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
+            out.print("<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We\" crossorigin=\"anonymous\">\n"
+                    + "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj\" crossorigin=\"anonymous\"></script>");
+            out.println("<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js\" \n"
+                    + "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script>");
             out.println("<title>Servlet ActualizarCategoria</title>");
             out.println("</head>");
             out.println("<body>");
@@ -51,17 +55,23 @@ public class ActualizarCategoria extends HttpServlet {
             CategoriaDAO dao = new CategoriaDAO();
             CategoriaDTO dto = new CategoriaDTO();
             dto.getEntidadad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+            String nombreActualizado = request.getParameter("nombreActualizado");
+            String descripcionActualizada = request.getParameter("descripcionActualizada");
 
             try {
                 dto = dao.read(dto);
+                dto.getEntidadad().setNombreCategoria(nombreActualizado);
+                dto.getEntidadad().setDescripcionCategoria(descripcionActualizada);
+                dao.update(dto);
 
             } catch (SQLException ex) {
                 Logger.getLogger(ActualizarCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
-            if(dto != null){
-                out.println("Formulario con datos");
+            if (dto != null) {
+                out.println("Datos actualizados");
                 out.print(dto);
-            }else{
+                out.println("<a href='MostrarDatosCategoria'class='btn btn-primary'>Ver lista de categoria</a>");
+            } else {
                 out.println("nooO");
             }
             out.println("</body>");

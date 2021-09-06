@@ -48,6 +48,14 @@ public class MostrarDatosCategoria extends HttpServlet {
             out.println("<script src=\"https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js\" \n"
                     + "<script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js\" crossorigin=\"anonymous\"></script>");
             out.println("<title>Lista de categorias</title>");
+            out.println("<script>\n"
+                    + "function llenarForm(id, nombre, descripcion){\n"
+                    + "    document.getElementById(\"nombre\").value = nombre;\n"
+                    + "    document.getElementById(\"descripcion\").value = descripcion;\n"
+                    + "    document.getElementById(\"id\").value = id;\n"
+                    + "}\n"
+                    + "\n"
+                    + "</script>");
             out.println("</head>");
             out.println("<body>");
             out.println("<div class=\"container\">");
@@ -64,24 +72,53 @@ public class MostrarDatosCategoria extends HttpServlet {
             try {
                 List lista = dao.readAll();
                 for (int i = 0; i < lista.size(); i++) {
-                    CategoriaDTO dto = (CategoriaDTO)lista.get(i);
+                    CategoriaDTO dto = (CategoriaDTO) lista.get(i);
                     out.println("<tr>");
-                    out.println("<td><a href='VerCategoria?id="+dto.getEntidadad().getIdCategoria()+"' class='btn btn-warning'>"+ dto.getEntidadad().getIdCategoria() +"</a></td>");
-                    
-                    out.println("<td>"+dto.getEntidadad().getNombreCategoria()+"</td>");
-                    out.println("<td>"+dto.getEntidadad().getDescripcionCategoria()+"</td>");
-                    out.println("<td><a href='EliminarCategoria?id="+dto.getEntidadad().getIdCategoria()+"' class='btn btn-danger'>Eliminar</a></td>");
-                    out.println("<td><a href='ActualizarCategoria?id="+dto.getEntidadad().getIdCategoria()+"' class='btn btn-success'>Actualizar</a></td>");
-                    
+                    out.println("<td><a href='VerCategoria?id=" + dto.getEntidadad().getIdCategoria() + "' class='btn btn-warning'>" + dto.getEntidadad().getIdCategoria() + "</a></td>");
+
+                    out.println("<td>" + dto.getEntidadad().getNombreCategoria() + "</td>");
+                    out.println("<td>" + dto.getEntidadad().getDescripcionCategoria() + "</td>");
+                    out.println("<td><a href='EliminarCategoria?id=" + dto.getEntidadad().getIdCategoria() + "' class='btn btn-danger' >Eliminar</a></td>");
+                    out.println("<td><button onclick=\"llenarForm(" + dto.getEntidadad().getIdCategoria() + ", '" + dto.getEntidadad().getNombreCategoria() + "', '" + dto.getEntidadad().getDescripcionCategoria() + "');\" class='btn btn-success' data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">Actualizar</a></td>");
+                    //href='ActualizarCategoria?id=" + dto.getEntidadad().getIdCategoria() + "
                     out.println("<tr>");
                 }
-                
+
             } catch (SQLException ex) {
                 Logger.getLogger(MostrarDatosCategoria.class.getName()).log(Level.SEVERE, null, ex);
             }
             out.println("</table>");
             out.println("<a href='categoriaForm.html'class='btn btn-primary'>Agregar categoria</a>");
-            
+            out.print("<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">\n"
+                    + "    <div class=\"modal-dialog\">\n"
+                    + "        <div class=\"modal-content\">\n"
+                    + "            <div class=\"modal-header\">\n"
+                    + "                <h5 class=\"modal-title\" id=\"exampleModalLabel\">Actualizar Datos</h5>\n"
+                    + "                <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>\n"
+                    + "            </div>\n"
+                    + "            <form name=\"frmActualizar\" method=\"get\" action=\"ActualizarCategoria\">\n"
+                    + "                <div class=\"modal-body\">\n"
+                    + "                    <div class=\"mb-3\">\n"
+                    + "                        <label for=\"nombre\" class=\"form-label\">Nombre</label>\n"
+                    + "                        <input type=\"text\" class=\"form-control\" id=\"nombre\" name=\"nombreActualizado\" aria-describedby=\"emailHelp\">\n"
+                    + "                    </div>\n"
+                    + "                    <div class=\"mb-3\">\n"
+                    + "                        <label for=\"descripcion\" class=\"form-label\">Descripción</label>\n"
+                    + "                        <input type=\"text\" class=\"form-control\" id=\"descripcion\" name=\"descripcionActualizada\">\n"
+                    + "                    </div>\n"
+                    + "                    <div class=\"mb-3 form-check\">\n"
+                    + "                        <input type=\"hidden\" class=\"form-check-input\" id=\"id\" name = \"id\">\n"
+                    + "                    </div>\n"
+                    + "                    \n"
+                    + "                </div>\n"
+                    + "                <div class=\"modal-footer\">\n"
+                    + "                    <button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Cerrar</button>\n"
+                    + "                    <button type=\"submit\" class=\"btn btn-primary\">Actualizar</button>\n"
+                    + "                </div>\n"
+                    + "            </form>\n"
+                    + "        </div>\n"
+                    + "    </div>\n"
+                    + "</div>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");
