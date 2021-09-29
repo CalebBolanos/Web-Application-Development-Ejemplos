@@ -30,10 +30,24 @@ public class CategoriaDAO {//data access object, encapsular la logica de datos
 
     private Connection conexion;
 
+//    private void conectar() {
+//        String user = "postgres";
+//        String pwd = "n0m3l0s3";
+//        String url = "jdbc:postgresql://localhost:5432/Base3CM13";
+//        String pgDriver = "org.postgresql.Driver";
+//
+//        try {
+//            Class.forName(pgDriver);
+//            conexion = DriverManager.getConnection(url, user, pwd);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+    
     private void conectar() {
-        String user = "postgres";
-        String pwd = "n0m3l0s3";
-        String url = "jdbc:postgresql://localhost:5432/Base3CM13";
+        String user = "tjlhzwbmymjncw";
+        String pwd = "1a5cf8e4223b57a7173f88a39b3fd4e0fcfbc154d2c1180ffac2dbc8ac874e21";
+        String url = "jdbc:postgresql://ec2-3-220-214-162.compute-1.amazonaws.com:5432/dab9sdm8igpdu7";
         String pgDriver = "org.postgresql.Driver";
 
         try {

@@ -1,3 +1,10 @@
+<%-- 
+    Document   : index
+    Created on : 27 sep. 2021, 08:08:59
+    Author     : caleb
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,15 +30,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="TablasDeMultiplicar">Tablas de Multiplicar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="MostrarDatosCategoria">Listado de Categorias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="categoriaForm.html">Nuevo</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ProductoController?accion=listaDeProductos">Productos</a>
                             </li>
                         </ul>
                     </div>

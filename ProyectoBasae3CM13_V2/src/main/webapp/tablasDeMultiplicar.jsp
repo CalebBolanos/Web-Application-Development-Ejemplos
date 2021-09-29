@@ -1,3 +1,10 @@
+<%-- 
+    Document   : tablasDeMultiplicar
+    Created on : 27 sep. 2021, 08:12:48
+    Author     : caleb
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,21 +29,27 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="TablasDeMultiplicar">Tablas de Multiplicar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="MostrarDatosCategoria">Listado de Categorias</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="categoriaForm.html">Nuevo</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ProductoController?accion=listaDeProductos">Productos</a>
+                                <a class="nav-link" href="#">Tablas de Multiplicar</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            <table class="table table-stripped">
+                <%
+                    for (int i = 0; i <= 10; i++) {
+                        out.println("<tr>");
+                        for (int j = 1; j <= 10; j++) {
+                            out.println("<td>" + (i * j) + "</td>");
+
+                        }
+                        out.println("</tr>");
+
+                    }
+                %>
+            </table>
+
         </div>
     </body>
 </html>
+

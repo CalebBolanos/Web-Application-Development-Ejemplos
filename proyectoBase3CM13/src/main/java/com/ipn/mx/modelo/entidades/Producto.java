@@ -6,6 +6,7 @@
 package com.ipn.mx.modelo.entidades;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,10 +21,9 @@ public class Producto implements Serializable{
     private int idProducto;
     private String nombreProducto;
     private String descripcionProducto;
-    private double precio;
+    private BigDecimal precio;
     private int existencia;
     private int stockMinimo;
-    
     private int claveCategoria;
     
 
