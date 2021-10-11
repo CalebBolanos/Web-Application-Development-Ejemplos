@@ -1,14 +1,15 @@
 <%-- 
-    Document   : index
-    Created on : 27 sep. 2021, 08:08:59
+    Document   : verDatos
+    Created on : 4 oct. 2021, 07:51:52
     Author     : caleb
 --%>
 
+<%@page import="com.ipn.mx.modelo.dto.CategoriaDTO"%>
+<%@page import="com.ipn.mx.modelo.dao.CategoriaDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pagina de Inicio</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" >
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
@@ -29,15 +30,55 @@
                                 <a class="nav-link active" aria-current="page" href="#">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="TablasDeMultiplicar.jsp">Tablas de Multiplicar</a>
+                                <a class="nav-link" href="../TablasDeMultiplicar.jsp">Tablas de Multiplicar</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="categorias/listaDeCategorias.jsp">listado de Categorias</a>
+                                <a class="nav-link" href="#">listado de Categorias</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+            <div class="card border-primary">
+                <div class="card-header">
+                    <h1>Lista de categorias</h1>
+                    <%
+                        CategoriaDAO dao = new CategoriaDAO();
+                        CategoriaDTO dto = new CategoriaDTO();
+                        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+
+                        dto = dao.read(dto);
+
+                        if(dto != null){
+                    %>
+                    <div class="card-body text-primary">
+                        <table class="table table-stripped">
+                            <tr>
+                                <th>Clave categoria</th>
+                                <td><%=dto.getEntidad().getIdCategoria()%></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre categoria</th>
+                                <td><%=dto.getEntidad().getNombreCategoria()%></td>
+                            </tr>
+                            <tr>
+                                <th>Descripcion categoria</th>
+                                <td><%=dto.getEntidad().getDescripcionCategoria()%></td>
+                            </tr>
+                        </table>
+
+                        <a href="listaDeCategorias.jsp" class="btn btn-warning">Regresar</a><!-- comment -->
+                    </div>  
+                    <%
+                        }else{
+                            out.println("Sin valores a mostrar");
+                        }
+                    %>
+
+                    
+                </div>
+            </div>
         </div>
+
     </body>
 </html>

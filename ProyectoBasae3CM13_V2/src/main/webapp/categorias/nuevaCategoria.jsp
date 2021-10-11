@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 27 sep. 2021, 08:08:59
+    Document   : nuevaCategoria
+    Created on : 7 oct. 2021, 07:24:00
     Author     : caleb
 --%>
 
@@ -38,6 +38,28 @@
                     </div>
                 </div>
             </nav>
+            <div class="mb-3"></div>
+            <div class="card border-success">
+                <h1 class="text-primary text_center">Datos de la categoria</h1>
+                <div class="card-body">
+                    <form method="POST" action="agregarCategoria.jsp">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre de Categoria</label>
+                            <input type="text" name="txtNombre" id="txtNombre" placeholder="Nombre Categoria" 
+                                   required="required" maxlength="50" class="form-control"/>
+
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Descripción de Categoria</label>
+                            <input type="text" name="txtDecripcion" id="txtDecripcion" placeholder="Descripcion de Categoria" 
+                                   required="required" maxlength="100" class="form-control"/>
+
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Registrar categoria</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>
