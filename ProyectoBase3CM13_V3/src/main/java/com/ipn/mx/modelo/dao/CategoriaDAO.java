@@ -23,11 +23,17 @@ import java.util.logging.Logger;
  */
 public class CategoriaDAO {//data access object, encapsular la logica de datos
 
-    private static final String SQL_INSERT = "insert into categoria (nombreCategoria, descripcionCategoria) values (?, ?)";
-    public static final String SQL_UPDATE = "update Categoria set nombreCategoria = ?, descripcionCategoria = ? where idCategoria = ?";
-    public static final String SQL_DELETE = "delete from Categoria where idCategoria = ?";
-    public static final String SQL_READ = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria where idCategoria = ?";
-    public static final String SQL_READ_ALL = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria";
+//    private static final String SQL_INSERT = "insert into categoria (nombreCategoria, descripcionCategoria) values (?, ?)";
+//    public static final String SQL_UPDATE = "update Categoria set nombreCategoria = ?, descripcionCategoria = ? where idCategoria = ?";
+//    public static final String SQL_DELETE = "delete from Categoria where idCategoria = ?";
+//    public static final String SQL_READ = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria where idCategoria = ?";
+//    public static final String SQL_READ_ALL = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria";
+    
+    private static final String SQL_INSERT = "";
+    public static final String SQL_UPDATE = "";
+    public static final String SQL_DELETE = "";
+    public static final String SQL_READ = "";
+    public static final String SQL_READ_ALL = "select * from seleccionaTodoCategoria()";
 
     private Connection conexion;
 

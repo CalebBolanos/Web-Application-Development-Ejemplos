@@ -1,6 +1,6 @@
 <%-- 
-    Document   : listaCategorias
-    Created on : 11 oct. 2021, 08:28:51
+    Document   : index.jsp
+    Created on : 14 oct. 2021, 21:26:46
     Author     : caleb
 --%>
 
@@ -15,10 +15,13 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 
-        <title>Lista de categorias</title>
+        <title>Proyecto Base v3</title>
     </head>
     <body>
         <div class="container">
+
+
+
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
@@ -59,17 +62,6 @@
                     </div>
                 </div>
             </nav>
-        </div>
-
-        <div class="card border-primary">
-            <div class="card-header text-center">
-                Categorias
-            </div>
-            <div class="card-body">
-                <h4 class="card-title">
-                    <a href="" class="btn btn-outline-success">Crear Categoria</a>
-                </h4>
-            </div>
         </div>
     </body>
 </html>

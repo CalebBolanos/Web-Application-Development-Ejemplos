@@ -6,6 +6,7 @@
 package com.ipn.mx.controlador;
 
 import com.ipn.mx.modelo.dao.CategoriaDAO;
+import com.ipn.mx.modelo.dto.CategoriaDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -55,6 +56,20 @@ public class CategoriaServlet extends HttpServlet {
         
         if(acccion.equals("listaDeCategorias")){
             listaDeCategorias(request, response);
+        }else if(acccion.equals("nuevo")){
+            agregarCategoria(request, response);
+        } else if(acccion.equals("eliminar")){
+            eliminarCategoria(request, response);
+        }else if(acccion.equals("actualizar")){
+            actualizarCategoria(request, response);
+        }else if(acccion.equals("guardar")){
+            almacenarCategoria(request, response);
+        }else if(acccion.equals("ver")){
+            mostrarCategoria(request, response);
+        }else if(acccion.equals("verReporte")){
+            mostrarReporteCategoria(request, response);
+        }else if(acccion.equals("graficar")){
+            mostrarGrafica(request, response);
         }
     }
 
@@ -108,6 +123,87 @@ public class CategoriaServlet extends HttpServlet {
         } catch (SQLException | ServletException | IOException ex) {
             Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void agregarCategoria(HttpServletRequest request, HttpServletResponse response) {
+        RequestDispatcher vista = request.getRequestDispatcher("/categorias/categoriasForm.jsp");
+        try {
+            vista.forward(request, response);
+        } catch (ServletException | IOException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void eliminarCategoria(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+
+        try {
+            dao.delete(dto);
+            listaDeCategorias(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void actualizarCategoria(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+
+        RequestDispatcher vista = request.getRequestDispatcher("/categorias/categoriasForm.jsp");
+
+        try {
+            dao.read(dto);
+            request.setAttribute("categoria", dto);
+            vista.forward(request, response);
+
+        } catch (SQLException | ServletException | IOException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void mostrarCategoria(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.getEntidad().setIdCategoria(Integer.parseInt(request.getParameter("id")));
+
+        RequestDispatcher vista = request.getRequestDispatcher("/categorias/datosCategoria.jsp");
+
+        try {
+            dao.read(dto);
+            request.setAttribute("categoria", dto);
+            vista.forward(request, response);
+
+        } catch (SQLException | ServletException | IOException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void almacenarCategoria(HttpServletRequest request, HttpServletResponse response) {
+        CategoriaDAO dao = new CategoriaDAO();
+        CategoriaDTO dto = new CategoriaDTO();
+        
+        dto.getEntidad().setNombreCategoria(request.getParameter("txtNombreCategoria"));
+        dto.getEntidad().setDescripcionCategoria(request.getParameter("txtDescripcionCategoria"));
+        
+        try {
+            dao.create(dto);            
+            request.setAttribute("mensaje", "Categoria agregada con exito.");
+            
+            listaDeCategorias(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void mostrarReporteCategoria(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void mostrarGrafica(HttpServletRequest request, HttpServletResponse response) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
