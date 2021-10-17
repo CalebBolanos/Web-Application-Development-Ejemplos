@@ -4,6 +4,7 @@
     Author     : caleb
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,33 @@
                     </div>
                 </div>
             </nav>
+            
+            <div class="card card-border-primary">
+                <div class="card-header">
+                    <h1>Datos de la categoria</h1>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="CategoriaServlet?accion=guardar">
+                        <div class="nb-3">
+                            <label class="form-label">Nombre categoria</label>
+                            <input class="form-control" type="text" name="txtNombreCategoria" id="txtNombreCategoria"
+                                   placeholder="Nombre Categoria"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${categoria.entidad.nombreCategoria}"/>"
+                        </div>
+                        <div class="nb-3">
+                            <label class="form-label">Descripcion categoria</label>
+                            <input class="form-control" type="text" name="txtDescripcionCategoria" id="txtDescripcionCategoria"
+                                   placeholder="Descripcion Categoria"
+                                   required="required"
+                                   maxlength="100"
+                                   value="<c:out value="${categoria.entidad.descripcionCategoria}"/>"
+                        </div>
+                            <button type="submit" class="btn btn-outline-primary">Guardar Categoria</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </body>
 </html>

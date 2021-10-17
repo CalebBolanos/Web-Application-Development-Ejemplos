@@ -28,11 +28,38 @@ public class CategoriaDAO {//data access object, encapsular la logica de datos
 //    public static final String SQL_DELETE = "delete from Categoria where idCategoria = ?";
 //    public static final String SQL_READ = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria where idCategoria = ?";
 //    public static final String SQL_READ_ALL = "select idCategoria, nombreCategoria, descripcionCategoria from Categoria";
+/**
+ CREATE OR REPLACE PROCEDURE public.spinsertarcategoria(nombre character varying, descripcion character varying)
+ LANGUAGE sql
+AS $procedure$
+	insert into Categoria (nombreCategoria, descripcionCategoria) values (nombre, descripcion);
+$procedure$
+;
+CREATE OR REPLACE PROCEDURE public.spactualizarcategoria(nombre character varying, descripcion character varying, id integer)
+ LANGUAGE sql
+AS $procedure$
+	update  Categoria set nombreCategoria = nombre, descripcionCategoria = descripcion where idCategoria = id;
+$procedure$
+;
+CREATE OR REPLACE FUNCTION seleccionarCategoria(in id int)
+ RETURNS TABLE(idcategoria integer, nombrecategoria character varying, descripcioncategoria character varying)
+ LANGUAGE sql
+AS $function$
+    SELECT * FROM Categoria where idCategoria = id;
+$function$
+
+create or replace procedure spEliminarCategoria (in id int)
+language sql 
+as $$
+	delete from Categoria where idCategoria= id;
+$$
+ **/    
     
-    private static final String SQL_INSERT = "";
-    public static final String SQL_UPDATE = "";
-    public static final String SQL_DELETE = "";
-    public static final String SQL_READ = "";
+    
+    private static final String SQL_INSERT = "call spInsertarCategoria(?, ?)";
+    public static final String SQL_UPDATE = "call spActualizarCategoria(?,?,?)";
+    public static final String SQL_DELETE = "call spEliminarCategoria(?)";
+    public static final String SQL_READ = "select * from seleccionarCategoria(?)";
     public static final String SQL_READ_ALL = "select * from seleccionaTodoCategoria()";
 
     private Connection conexion;

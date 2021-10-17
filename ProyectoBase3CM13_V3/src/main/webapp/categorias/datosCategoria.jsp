@@ -4,6 +4,7 @@
     Author     : caleb
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -62,6 +63,27 @@
                     </div>
                 </div>
             </nav>
+            
+            <div class="card bg-light">
+                <div class="card_header">
+                    <h3>Datos de la categoria</h3>
+                </div>
+                <div class="card-body">
+                     <img src="./images/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                     <ul class="list-group">
+                         <li class="list-group-item">
+                             <c:out value="${categoria.entidad.idCategoria}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${categoria.entidad.nombreCategoria}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${categoria.entidad.descripcionCategoria}" />
+                         </li>
+                         
+                     </ul>
+                </div>
+            </div>
         </div>
     </body>
 </html>

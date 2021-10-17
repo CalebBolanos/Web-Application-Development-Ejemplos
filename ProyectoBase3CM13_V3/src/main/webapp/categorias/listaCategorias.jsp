@@ -4,6 +4,7 @@
     Author     : caleb
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -67,9 +68,48 @@
             </div>
             <div class="card-body">
                 <h4 class="card-title">
-                    <a href="" class="btn btn-outline-success">Crear Categoria</a>
+                    <a href="CategoriaServlet?accion=nuevo" class="btn btn-outline-success">Crear Categoria</a>
                 </h4>
+                <c:if test="${mensaje != null}">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong>${mensaje}</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" arial-label="Close"></button>
+                    </div>
+                </c:if>
+                
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Clave Categoria</th>
+                            <th>Nombre Categoria</th>
+                            <th>Descripción Categoria</th>
+                            <th>Eliminar</th>
+                            <th>Actualizar</th>
+                            <th>Reporte</th>
+                        </tr>
+                    </thead>
+                    <c:forEach var="dto" items="${listaDeCategorias}">
+                        <tbody>
+                            <tr>
+                                <td><a href="CategoriaServlet?accion=ver&id=<c:out value="${dto.entidad.idCategoria}" />" class="btn btn-outline-warning"><c:out value="${dto.entidad.idCategoria}" /></a></td>
+                                <td><c:out value="${dto.entidad.nombreCategoria}" /></td>
+                                <td><c:out value="${dto.entidad.descripcionCategoria}" /></td>
+                                <td>
+                                    <a href="CategoriaServlet?accion=eliminar&id=<c:out value="${dto.entidad.idCategoria}" />" class="btn btn-outline-danger">Eliminar</a>
+                                </td>
+                                <td>
+                                    <a href="CategoriaServlet?accion=actualizar&id=<c:out value="${dto.entidad.idCategoria}"/>" class="btn btn-outline-success">Actualizar</a>
+                                </td>
+                                <td>
+                                    <a href="CategoriaServlet?accion=verReporte&id=<c:out value="${dto.entidad.idCategoria}"/>" class="btn btn-outline-info">Reporte</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </c:forEach>
+
+                    </table>
+
+                </div>
             </div>
-        </div>
-    </body>
-</html>
+        </body>
+    </html>
