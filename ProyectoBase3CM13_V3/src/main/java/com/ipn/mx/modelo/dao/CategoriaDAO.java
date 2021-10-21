@@ -64,7 +64,7 @@ $$
 
     private Connection conexion;
 
-    private void conectar() {
+    public Connection conectar() {
         String user = "postgres";
         String pwd = "n0m3l0s3";
         String url = "jdbc:postgresql://localhost:5432/Base3CM13";
@@ -76,6 +76,7 @@ $$
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return conexion;
     }
     
 

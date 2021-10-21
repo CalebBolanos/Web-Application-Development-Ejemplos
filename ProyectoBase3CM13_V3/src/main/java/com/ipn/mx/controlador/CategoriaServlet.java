@@ -20,10 +20,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtils;
 import org.jfree.chart.JFreeChart;
@@ -209,7 +212,22 @@ public class CategoriaServlet extends HttpServlet {
     }
 
     private void mostrarReporteCategoria(HttpServletRequest request, HttpServletResponse response) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CategoriaDAO dao = new CategoriaDAO();
+        try {
+            ServletOutputStream sos = response.getOutputStream();
+            File reporte = new File(getServletConfig().getServletContext().getRealPath("/reportes/ReporteGeneral.jasper"));
+            byte[] b = JasperRunManager.runReportToPdf(reporte.getPath(), null, dao.conectar());
+            response.setContentType("application/pdf");
+            response.setContentLength(b.length);
+            
+            sos.write(b,0,b.length);
+            sos.flush();
+            sos.close();
+            
+        } catch (IOException | JRException ex) {
+            Logger.getLogger(CategoriaServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     private void mostrarGrafica(HttpServletRequest request, HttpServletResponse response) {
