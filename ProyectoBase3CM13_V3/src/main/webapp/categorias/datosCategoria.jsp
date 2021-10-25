@@ -80,7 +80,6 @@
                          <li class="list-group-item">
                              <c:out value="${categoria.entidad.descripcionCategoria}" />
                          </li>
-                         
                      </ul>
                 </div>
             </div>

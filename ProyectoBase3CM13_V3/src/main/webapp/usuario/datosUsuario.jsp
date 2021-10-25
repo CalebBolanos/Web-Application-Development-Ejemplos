@@ -1,9 +1,10 @@
 <%-- 
-    Document   : index.jsp
-    Created on : 14 oct. 2021, 21:26:46
+    Document   : datosUsuario
+    Created on : 24 oct. 2021, 21:12:52
     Author     : caleb
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,7 +16,7 @@
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 
-        <title>Proyecto Base v3</title>
+        <title>DatosCategoria</title>
     </head>
     <body>
         <div class="container">
@@ -48,9 +49,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Nuevo Producto</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="UsuarioServlet?accion=listaDeUsuarios">Listado De Usuarios</a>
-                            </li>
                             <!--        <li class="nav-item dropdown">
                                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Dropdown link
@@ -65,6 +63,38 @@
                     </div>
                 </div>
             </nav>
+            
+            <div class="card bg-light">
+                <div class="card_header">
+                    <h3>Datos del usuario</h3>
+                </div>
+                <div class="card-body">
+                     <img src="./images/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+                     <ul class="list-group">
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.nombre}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.paterno}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.materno}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.email}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.nombreUsuario}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.claveUsuario}" />
+                         </li>
+                         <li class="list-group-item">
+                             <c:out value="${usuario.entidad.tipoUsuario}" />
+                         </li>
+                     </ul>
+                </div>
+            </div>
         </div>
     </body>
 </html>

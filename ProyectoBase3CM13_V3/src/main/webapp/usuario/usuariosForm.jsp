@@ -1,6 +1,6 @@
 <%-- 
-    Document   : categoriasForm
-    Created on : 14 oct. 2021, 21:03:15
+    Document   : usuariosForm
+    Created on : 24 oct. 2021, 20:28:24
     Author     : caleb
 --%>
 
@@ -66,27 +66,67 @@
             
             <div class="card card-border-primary">
                 <div class="card-header">
-                    <h1>Datos de la categoria</h1>
+                    <h1>Datos del usuario</h1>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="CategoriaServlet?accion=guardar">
+                    <form method="POST" action="UsuarioServlet?accion=guardar">
                         <div class="nb-3">
-                            <label class="form-label">Nombre categoria</label>
-                            <input class="form-control" type="text" name="txtNombreCategoria" id="txtNombreCategoria"
-                                   placeholder="Nombre Categoria"
+                            <label class="form-label">Nombre</label>
+                            <input class="form-control" type="text" name="txtNombre" id="txtNombre"
+                                   placeholder="Nombre"
                                    required="required"
                                    maxlength="50"
-                                   value="<c:out value="${categoria.entidad.nombreCategoria}"/>"/>
+                                   value="<c:out value="${usuario.entidad.nombre}" />" />
                         </div>
                         <div class="nb-3">
-                            <label class="form-label">Descripcion categoria</label>
-                            <input class="form-control" type="text" name="txtDescripcionCategoria" id="txtDescripcionCategoria"
-                                   placeholder="Descripcion Categoria"
+                            <label class="form-label">Paterno</label>
+                            <input class="form-control" type="text" name="txtPaterno" id="txtPaterno"
+                                   placeholder="Paterno"
                                    required="required"
-                                   maxlength="100"
-                                   value="<c:out value="${categoria.entidad.descripcionCategoria}"/>"/>
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.paterno}" />" />
                         </div>
-                            <button type="submit" class="btn btn-outline-primary">Guardar Categoria</button>
+                        <div class="nb-3">
+                            <label class="form-label">Materno</label>
+                            <input class="form-control" type="text" name="txtMaterno" id="txtMaterno"
+                                   placeholder="Materno"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.materno}" />" />
+                        </div>
+                        <div class="nb-3">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" type="mail" name="txtEmail" id="txtEmail"
+                                   placeholder="Email"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.email}" />" />
+                        </div>
+                        <div class="nb-3">
+                            <label class="form-label">Nombre de Usuario</label>
+                            <input class="form-control" type="mail" name="txtNombreUsuario" id="txtNombreUsuario"
+                                   placeholder="Nombre de Usuario"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.nombreUsuario}" />" />
+                        </div>
+                        <div class="nb-3">
+                            <label class="form-label">Clave de Usuario</label>
+                            <input class="form-control" type="password" name="txtClaveUsuario" id="txtClaveUsuario"
+                                   placeholder="Nombre de Usuario"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.claveUsuario}" />" />
+                        </div>
+                        <div class="nb-3">
+                            <label class="form-label">Tipo de Usuario</label>
+                            <input class="form-control" type="text" name="txtTipoUsuario" id="txtTipoUsuario"
+                                   placeholder="Tipo de Usuario"
+                                   required="required"
+                                   maxlength="50"
+                                   value="<c:out value="${usuario.entidad.tipoUsuario}" />" />
+                        </div>
+                            <button type="submit" class="btn btn-outline-primary">Guardar Usuario</button>
                     </form>
                 </div>
             </div>

@@ -196,14 +196,14 @@ $$
     public static void main(String[] args) {
         CategoriaDAO dao = new CategoriaDAO();
         CategoriaDTO dto = new CategoriaDTO();
-        dto.getEntidad().setIdCategoria(1);
+        dto.getEntidad().setIdCategoria(2);
         //dto.getEntidadad().setNombreCategoria("computo");
         //dto.getEntidadad().setDescripcionCategoria("Cosas para el escuela");
         
         try {
             //dao.create(dto);
             //dao.update(dto);
-            System.out.println(dao.readAll());
+            System.out.println(dao.read(dto));
         } catch (SQLException ex) {
             Logger.getLogger(CategoriaDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
